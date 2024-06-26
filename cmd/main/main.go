@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 func main() {
+
     r := mux.NewRouter()
     routes.RegisterBlogRoutes(r)
     http.Handle("/",r)
