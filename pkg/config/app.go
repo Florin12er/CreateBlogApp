@@ -11,8 +11,8 @@ import (
 var db *gorm.DB
 
 func Connect() {
-	err := godotenv.Load("../.env")
-	POSTGRESDB := os.Getenv("POSTGRESDB")
+	err := godotenv.Load()
+	POSTGRESDB := os.Getenv("DATABASE_URL")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
