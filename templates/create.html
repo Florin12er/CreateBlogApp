@@ -1,3 +1,19 @@
 {{ define "content" }}
 <h1>New Blog</h1>
+<form action="/blog" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required /><br />
+  
+  <label for="author">Author:</label>
+  <input type="text" id="author" name="author" required /><br />
+  
+  <label for="links">Links:</label>
+  <input type="text" id="links" name="links" required /><br />
+  
+  <label for="content">Content:</label>
+  <textarea name="content" id="content" required></textarea>
+  
+  <button type="submit">Create</button>
+</form>
 {{ end }}
+

@@ -1,0 +1,9 @@
+services:
+  web:
+    port: 8080
+    buildScript: go build -o ./cmd/main/
+    startCommand: ./main
+environments:
+  production:
+    DATABASE_URL: "postgresql://florin:florin12er@localhost:5432/goblog?sslmode=disable"
+

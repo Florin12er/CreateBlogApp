@@ -4,19 +4,20 @@ import (
 	"fmt"
 	"github.com/florin12er/GoBlogApp/pkg/config"
 	"github.com/jinzhu/gorm"
+    "strings"
 )
 
 var db *gorm.DB
 
 type Blog struct {
-	gorm.Model
-	Name    string `gorm:"" json:"name"`
-	Author  string `        json:"author"`
-	Date    string `        json:"publication"`
-	Links   string `        json:"links"`
-	Content string `        json:"content"`
+    gorm.Model
+    Name        string `gorm:"" json:"name"`
+    Author      string `json:"author"`
+    Date        string `json:"publication"`
+    Links       string `json:"links"`
+    Content     string `json:"content"`
+    ShortContent string `gorm:"-"` // Exclude from database schema, used only in Go code
 }
-
 func init() {
 	config.Connect()
 	fmt.Println("connected to postgres")
@@ -32,7 +33,21 @@ func (b *Blog) CreateBlog() *Blog {
 func GetAllBlogs() []Blog {
     var Blogs []Blog
     db.Find(&Blogs)
+
+    // Populate ShortContent for each blog entry
+    for i := range Blogs {
+        Blogs[i].ShortContent = truncateContent(Blogs[i].Content, 150) // Adjust length as needed
+    }
+
     return Blogs
+}
+
+// Function to truncate content
+func truncateContent(content string, length int) string {
+    if len(content) > length {
+        return strings.TrimSpace(content[:length]) + "..."
+    }
+    return content
 }
 
 func GetBlogsById(Id int64) (*Blog, *gorm.DB) {

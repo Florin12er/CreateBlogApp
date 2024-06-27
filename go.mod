@@ -8,4 +8,5 @@ require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/lib/pq v1.1.1 // indirect
+	golang.org/dl v0.0.0-20240621154342-20a4bcbb3ee2 // indirect
 )
