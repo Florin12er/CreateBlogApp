@@ -1,5 +1,6 @@
 package controllers
 
+
 import (
 	"fmt"
 	"github.com/florin12er/GoBlogApp/pkg/models"
@@ -83,19 +84,6 @@ func GoToCreateBlog(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func CreateBlog(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost {
-		CreateBook := &models.Blog{}
-		CreateBook.Name = r.FormValue("name")
-		CreateBook.Author = r.FormValue("author")
-		CreateBook.Content = r.FormValue("content")
-		CreateBook.Links = r.FormValue("links")
-		var _ = CreateBook.CreateBlog()
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-	} else {
-		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
-	}
-}
 func GoToEditBlog(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     blogId := vars["blogId"]
@@ -131,13 +119,26 @@ func GoToEditBlog(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), http.StatusInternalServerError)
     }
 }
+func CreateBlog(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		CreateBook := &models.Blog{
+            Name: r.FormValue("name"),
+            Author: r.FormValue("author"),
+            Content: r.FormValue("content"),
+            Links: r.FormValue("links"),
+        }
+		var _ = CreateBook.CreateBlog()
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	} else {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+	}
+}
 
 func DeleteBlog(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodDelete {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
-
 	vars := mux.Vars(r)
 	blogId := vars["blogId"]
 	ID, err := strconv.ParseInt(blogId, 10, 64)
@@ -197,4 +198,22 @@ func UpdateBlog(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(blogDetails)
 }
+func HandleError(w http.ResponseWriter, r *http.Request) {
+	NewBlogs := models.GetAllBlogs()
+	tmplPath, tmplErr := utils.GetTemplatePath("notfound.html")
+	if tmplErr != nil {
+		http.Error(w, tmplErr.Error(), http.StatusInternalServerError)
+		return
+	}
 
+	tmpl, err := template.ParseFiles(tmplPath)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusNotFound)
+	if err := tmpl.Execute(w, NewBlogs); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}

@@ -1,24 +1,36 @@
 {{ define "content" }}
 <h1>Edit Blog: {{ .Name }}</h1>
-
-<form id="updateForm{{.ID}}" style="display: inline">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" value="{{ .Name }}" required /><br />
-  
-  <label for="author">Author:</label>
-  <input type="text" id="author" name="author" value="{{ .Author }}" required /><br />
-  
-  <label for="links">Links:</label>
-  <input type="text" id="links" name="links" value="{{ .Links }}" required /><br />
-  
-  <label for="content">Content:</label>
-  <textarea name="content" id="content" required>{{ .Content }}</textarea><br />
-  
-  <!-- Hidden input for method override to simulate PUT request -->
-  <input type="hidden" name="_method" value="PUT" />
-  
-  <!-- Button to trigger updateBlog JavaScript function -->
-  <button type="button" onclick="updateBlog('{{.ID}}')">Update</button>
-</form>
+<div>
+  <form id="updateForm{{.ID}}" style="display: inline">
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="{{ .Name }}"
+      required
+    /><br />
+    <label for="author">Author:</label>
+    <input
+      type="text"
+      id="author"
+      name="author"
+      value="{{ .Author }}"
+      required
+    /><br />
+    <label for="links">Links:</label>
+    <input
+      type="text"
+      id="links"
+      name="links"
+      value="{{ .Links }}"
+      required
+    /><br />
+    <label for="content">Content:</label>
+    <textarea name="content" id="content" required>{{ .Content }}</textarea
+    ><br />
+    <input type="hidden" name="_method" value="PUT" />
+    <button type="button" onclick="updateBlog('{{.ID}}')">Update</button>
+  </form>
+</div>
 {{ end }}
-
