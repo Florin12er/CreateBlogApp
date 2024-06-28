@@ -1,0 +1,21 @@
+.buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: end;
+}
+.buttons a {
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+}
+.buttons button {
+    font-size: 25px;
+    color: var(--background-color);
+    padding: 8px;
+    background: var(--danger);
+    border: none;
+    cursor: pointer;
+}
+.buttons button:hover {
+    background: var(--danger-hover);
+}

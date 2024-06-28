@@ -3,14 +3,15 @@
 <div>
   <h2>{{ .Name }}</h2>
   <p>Author: {{ .Author }}</p>
-  <p>Links: {{ .Links }}</p>
+  <p>Tags: {{ .Tags }}</p>
   <p>Content:</p>
   <p>{{ .Content }}</p>
-  <form id="deleteForm{{.ID}}" style="display: inline">
-    <input type="hidden" name="_method" value="DELETE" />
-    <button type="button" onclick="deleteBlog('{{.ID}}')">Delete</button>
-  </form>
-  <a href="/blog/{{.ID}}/edit">Edit</a>
+  <div class="buttons">
+    <form id="deleteForm{{.ID}}" style="display: inline">
+      <input type="hidden" name="_method" value="DELETE" />
+      <button type="button" onclick="deleteBlog('{{.ID}}')">Delete</button>
+    </form>
+    <a href="/blog/{{.ID}}/edit">Edit</a>
+  </div>
 </div>
 {{ end }}
-

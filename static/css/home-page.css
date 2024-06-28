@@ -1,0 +1,20 @@
+.home-page {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.home-page li {
+    border: 2px solid red;
+    padding: 30px;
+}
+
+.home-page .title {
+    text-decoration: none;
+    color: black;
+}
+
+.home-page .title:hover {
+    color: red;
+}
+

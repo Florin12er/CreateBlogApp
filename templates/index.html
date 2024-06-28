@@ -1,21 +1,23 @@
 {{ define "content" }}
-<h1>List of Blogs</h1>
+<h1>List of Blogs:</h1>
 <div class="home">
-  <ul>
+  <ul class="home-page">
     {{ range . }}
     <li>
-      <h2>{{ .Name }}</h2>
+      <h2><a class="title" href="/blog/{{.ID}}">{{ .Name }}</a></h2>
       <p>Author: {{ .Author }}</p>
       <p>Content: {{ .ShortContent }}</p>
+      <p>Tags: {{ .Tags }}</p>
       <p><a href="/blog/{{ .ID }}">Read more</a></p>
-      <form id="deleteForm{{.ID}}" style="display: inline">
-        <input type="hidden" name="_method" value="DELETE" />
-        <button type="button" onclick="deleteBlog('{{.ID}}')">Delete</button>
-      </form>
-      <a href="/blog/{{.ID}}/edit">Edit</a>
+      <div class="buttons">
+        <form id="deleteForm{{.ID}}" style="display: inline">
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="button" onclick="deleteBlog('{{.ID}}')">Delete</button>
+        </form>
+        <a href="/blog/{{.ID}}/edit">Edit</a>
+      </div>
     </li>
     {{ end }}
   </ul>
 </div>
 {{ end }}
-

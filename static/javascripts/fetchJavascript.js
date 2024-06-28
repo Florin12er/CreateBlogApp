@@ -18,13 +18,13 @@ function deleteBlog(blogId) {
 function updateBlog(blogId) {
     const name = document.getElementById("name").value;
     const author = document.getElementById("author").value;
-    const links = document.getElementById("links").value;
+    const tags = document.getElementById("tags").value;
     const content = document.getElementById("content").value;
 
     const data = {
         name: name,
         author: author,
-        links: links,
+        tags: tags,
         content: content,
     };
 

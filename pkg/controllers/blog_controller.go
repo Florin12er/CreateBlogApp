@@ -125,7 +125,7 @@ func CreateBlog(w http.ResponseWriter, r *http.Request) {
             Name: r.FormValue("name"),
             Author: r.FormValue("author"),
             Content: r.FormValue("content"),
-            Links: r.FormValue("links"),
+            Tags: r.FormValue("tags"),
         }
 		var _ = CreateBook.CreateBlog()
 		http.Redirect(w, r, "/", http.StatusSeeOther)
@@ -184,8 +184,8 @@ func UpdateBlog(w http.ResponseWriter, r *http.Request) {
 	if updateBlog.Author != "" {
 		blogDetails.Author = updateBlog.Author
 	}
-	if updateBlog.Links != "" {
-		blogDetails.Links = updateBlog.Links
+	if updateBlog.Tags != "" {
+		blogDetails.Tags = updateBlog.Tags
 	}
 	if updateBlog.Content != "" {
 		blogDetails.Content = updateBlog.Content

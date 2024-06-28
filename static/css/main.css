@@ -1,36 +1,28 @@
 /* Example styles */
+@import "../fonts/stylesheet.css";
+@import "../css/variables.css";
+@import "../css/header.css";
+@import "../css/home-page.css";
+@import "../css/buttons.css";
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: "Playwrite IT Moderna", sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    font-size: 20px;
 }
 
-header {
-    background-color: #007bff;
-    color: #333;
-    padding: 10px;
-}
-
-nav ul {
-    list-style-type: none;
+ul {
+    list-style: none;
     padding: 0;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 10px;
-}
-
-a {
-    color: #333;
-    text-decoration: none;
-}
-
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #333;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 2000px;
+    margin: auto;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 5px;
 }
+
 

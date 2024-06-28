@@ -14,7 +14,7 @@ type Blog struct {
     Name        string `gorm:"" json:"name"`
     Author      string `json:"author"`
     Date        string `json:"publication"`
-    Links       string `json:"links"`
+    Tags       string `json:"tags"`
     Content     string `json:"content"`
     ShortContent string `gorm:"-"` // Exclude from database schema, used only in Go code
 }

@@ -8,16 +8,18 @@
   </head>
 
   <body>
-    <header class="flex">
-      <h1>Blog App</h1>
+    <header class="header">
+      <h1><a href="/">Blog App</a></h1>
       <nav>
-        <ul>
+        <ul class="header-link">
           <li><a href="/">Blogs</a></li>
           <li><a href="/blog/new">Create Blog</a></li>
         </ul>
       </nav>
     </header>
-    <main>{{template "content" .}}</main>
+    <div class="container">
+      <main>{{template "content" .}}</main>
+    </div>
     <script src="/static/javascripts/fetchJavascript.js"></script>
   </body>
 </html>
