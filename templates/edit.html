@@ -10,6 +10,7 @@
       value="{{ .Name }}"
       required
     /><br />
+
     <label for="author">Author:</label>
     <input
       type="text"
@@ -18,6 +19,7 @@
       value="{{ .Author }}"
       required
     /><br />
+
     <label for="links">Links:</label>
     <input
       type="text"
@@ -26,9 +28,11 @@
       value="{{ .Links }}"
       required
     /><br />
+
     <label for="content">Content:</label>
     <textarea name="content" id="content" required>{{ .Content }}</textarea
     ><br />
+
     <input type="hidden" name="_method" value="PUT" />
     <button type="button" onclick="updateBlog('{{.ID}}')">Update</button>
   </form>
