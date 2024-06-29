@@ -1,19 +1,22 @@
 {{ define "content" }}
-<h1>New Blog</h1>
-<form action="/blog" method="POST">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required /><br />
-  
-  <label for="author">Author:</label>
-  <input type="text" id="author" name="author" required /><br />
-  
-  <label for="tags">Tags:</label>
-  <input type="text" id="tags" name="tags" required /><br />
-  
-  <label for="content">Content:</label>
-  <textarea name="content" id="content" required></textarea>
-  
-  <button type="submit">Create</button>
-</form>
-{{ end }}
+<h1 class="form-title">New Blog:</h1>
+<div class="blog-new">
+    <form action="/blog" method="POST" class="blog-form">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" name="name" class="form-input" required /><br />
 
+        <label for="author" class="form-label">Author:</label>
+        <input type="text" id="author" name="author" class="form-input" required /><br />
+
+        <label for="tags" class="form-label">Tags:</label>
+        <input type="text" id="tags" name="tags" class="form-input" required /><br />
+
+        <label for="content" class="form-label">Content:</label>
+        <textarea name="content" id="content" class="form-textarea" required></textarea>
+        <div class="create-buttons">
+            <button type="submit" class="submit-button">Create</button>
+            <a href="/" class="cancel-button">Cancel</a>
+        </div>
+    </form>
+</div>
+{{ end }}

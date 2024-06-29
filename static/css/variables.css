@@ -1,5 +1,11 @@
 :root {
-    --background-color: #f0f0f0;
-    --danger: #dc2626;
-    --danger-hover: #991b1b;
+  --background-color: #f0f0f0;
+  --item-color: #fff;
+  --title-color: #333;
+  --hover-color: #28a745;
+  --button-hover-submit: #218839;
+  --read-more: #007bff;
+  --blog-item: #555;
+  --danger: #dc3545;
+  --danger-hover: #c82333;
 }

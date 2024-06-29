@@ -1,11 +1,11 @@
 package main
 
 import (
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-	"html/template"
 
 	"github.com/florin12er/GoBlogApp/pkg/routes"
 	"github.com/gorilla/mux"
@@ -17,13 +17,8 @@ func main() {
 
 	// Serve static files
 	fs := http.FileServer(http.Dir("../../static"))
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Set the Content-Type header explicitly for CSS files
-		if filepath.Ext(r.URL.Path) == ".css" {
-			w.Header().Set("Content-Type", "text/css")
-		}
-		fs.ServeHTTP(w, r)
-	})))
+	r.PathPrefix("/static/").
+		Handler(http.StripPrefix("/static/", fs))
 
 	// Register the template handler for the root route
 	r.HandleFunc("/{page}", serveTemplate).Methods("GET")
@@ -31,7 +26,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "3000"
+		port = "5000"
 	}
 
 	addr := "0.0.0.0:" + port
@@ -40,28 +35,37 @@ func main() {
 }
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
-	lp := filepath.Join("templates", "layout.html")
-	fp := filepath.Join("templates", r.URL.Path)
+	// Correctly determine template paths
+	layoutPath := filepath.Join("../../templates", "layout.html")
+	pagePath := filepath.Join("../../templates", r.URL.Path)
 
-	// Append ".html" if no extension is present
-	if filepath.Ext(fp) == "" {
-		fp += ".html"
+	// Ensure the page path ends with ".html"
+	if filepath.Ext(pagePath) == "" {
+		pagePath += ".html"
 	}
 
-	tmpl, err := template.ParseFiles(lp, fp)
+	// Check if the requested template exists
+	if _, err := os.Stat(pagePath); os.IsNotExist(err) {
+		http.NotFound(w, r)
+		return
+	}
+
+	// Parse the layout and page templates together
+	tmpl, err := template.ParseFiles(layoutPath, pagePath)
 	if err != nil {
-		log.Println(err.Error())
+		log.Println("Error parsing templates:", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
+	// Example data to pass to the template
 	data := map[string]interface{}{
 		"Title": "My Blog",
 	}
 
-	if err := tmpl.Execute(w, data); err != nil {
-		log.Println(err.Error())
+	// Execute the template with the data
+	if err := tmpl.ExecuteTemplate(w, "layout", data); err != nil {
+		log.Println("Error executing template:", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }
-

@@ -1,0 +1,71 @@
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.show-title {
+  font-size: 30px;
+  color: var(--title-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.blog {
+    display: grid;
+}
+/* Blog Details */
+.blog-details {
+  padding: 20px;
+  background-color: var(--item-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 24px;
+}
+
+/* Blog Name */
+.blog-name {
+  font-size: 20px;
+  color: var(--title-color);
+  margin-bottom: 10px;
+}
+
+/* Blog Author, Tags, Content */
+.blog-author,
+.blog-tags,
+.blog-content-title,
+.blog-content {
+  font-size: 20px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.blog-buttons {
+  display: flex;
+    justify-content: flex-end;
+}
+
+/* Delete Button */
+.delete-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--danger);
+  color: white;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: var(--danger);
+}
+
+/* Edit Button */
+.edit-button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--hover-color);
+  color: white;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.edit-button:hover {
+  background-color: var(--button-hover-submit);
+}

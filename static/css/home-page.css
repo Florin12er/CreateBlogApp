@@ -1,20 +1,86 @@
+.home-title {
+  font-size: 30px;
+  color: var(--title-color);
+}
+
+/* Home Page Grid */
 .home-page {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+  font-size: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style: none;
 }
 
-.home-page li {
-    border: 2px solid red;
-    padding: 30px;
+/* Blog Item */
+.blog-item {
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: var(--item-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
 }
 
-.home-page .title {
-    text-decoration: none;
-    color: black;
+/* Blog Title */
+.blog-title {
+  font-size: 30px;
+  color: var(--title-color);
+  text-decoration: none;
 }
 
-.home-page .title:hover {
-    color: red;
+.blog-title:hover {
+  color: var(--hover-color);
 }
 
+/* Blog Author, Content, Tags */
+.blog-item p {
+  color: var(--blog-item);
+  font-size: 20px;
+}
+
+/* Read More Link */
+.read-more {
+  color: var(--read-more);
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* Blog Buttons */
+.blog-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-button {
+  font-family: "Playwrite IT Moderna";
+  height: 50px;
+  font-size: 24px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--danger-hover);
+  color: white;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color:var(--danger-hover);
+}
+
+/* Edit Button */
+.edit-button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--hover-color);
+  color: white;
+  text-decoration: none;
+}
+
+.edit-button:hover {
+  background-color: var(--button-hover-submit);
+}

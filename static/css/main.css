@@ -1,28 +1,27 @@
 /* Example styles */
-@import "../fonts/stylesheet.css";
 @import "../css/variables.css";
+@import "../fonts/stylesheet.css";
 @import "../css/header.css";
 @import "../css/home-page.css";
 @import "../css/buttons.css";
+@import "../css/create.css";
+@import "../css/showBlog.css";
 
 body {
-    font-family: "Playwrite IT Moderna", sans-serif;
-    background-color: var(--background-color);
-    margin: 0;
-    font-size: 20px;
+  font-family: "Playwrite IT Moderna", sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .container {
-    max-width: 2000px;
-    margin: auto;
-    margin-bottom: 3rem;
-    padding: 1rem;
-    border-radius: 5px;
+  width: 100%;
+  max-width: 2000px;
+  margin: 20px auto;
+  padding: 0 20px;
 }
-
-

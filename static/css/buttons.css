@@ -1,21 +1,26 @@
 .buttons {
-    display: flex;
-    gap: 5px;
-    justify-content: end;
+  display: flex;
+  justify-content: flex-end; /* Updated to align buttons to the right */
+  gap: 10px;
 }
+
 .buttons a {
-    font-size: 25px;
-    text-decoration: none;
-    color: black;
+  font-size: 16px; /* Adjusted font size */
+  text-decoration: none;
+  color: var(--title-color); /* Changed color to a darker shade */
 }
+
 .buttons button {
-    font-size: 25px;
-    color: var(--background-color);
-    padding: 8px;
-    background: var(--danger);
-    border: none;
-    cursor: pointer;
+  font-size: 16px; /* Adjusted font size */
+  color: var(--item-color); /* Text color set to white */
+  padding: 10px 15px; /* Increased padding for better touch area */
+  background-color: var(--danger); /* Red background color */
+  border: none;
+  cursor: pointer;
+  border-radius: 4px; /* Added border radius for rounded corners */
 }
+
 .buttons button:hover {
-    background: var(--danger-hover);
+  background-color: var(--danger-hover); /* Darker shade of red on hover */
 }
+

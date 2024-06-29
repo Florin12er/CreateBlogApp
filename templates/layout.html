@@ -3,23 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog create website</title>
+    <title>Blog Create Website</title>
     <link rel="stylesheet" href="/static/css/main.css" />
   </head>
 
   <body>
     <header class="header">
-      <h1><a href="/">Blog App</a></h1>
-      <nav>
-        <ul class="header-link">
-          <li><a href="/">Blogs</a></li>
-          <li><a href="/blog/new">Create Blog</a></li>
+      <h1><a class="header-title" href="/">Blog Maker App</a></h1>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="/">Blogs</a></li>
+          <li><a class="nav-link" href="/blog/new">Create Blog</a></li>
         </ul>
       </nav>
     </header>
     <div class="container">
-      <main>{{template "content" .}}</main>
+      <main>{{ template "content" . }}</main>
     </div>
     <script src="/static/javascripts/fetchJavascript.js"></script>
   </body>
 </html>
+
