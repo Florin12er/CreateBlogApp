@@ -23,4 +23,8 @@
 .buttons button:hover {
   background-color: var(--danger-hover); /* Darker shade of red on hover */
 }
-
+.edit-buttons {
+    gap: 10px;
+    display: flex;
+    justify-content: flex-end;
+}

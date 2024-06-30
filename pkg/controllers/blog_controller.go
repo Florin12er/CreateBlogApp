@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"strconv"
     "encoding/json"
+    "strings"
 )
 
 var NewBlog models.Blog
@@ -21,6 +22,29 @@ func ShowAllBlogs(w http.ResponseWriter, r *http.Request) {
 
 	tmpl, err := template.ParseFiles(layoutPath, tmplPath)
 	if layoutErr != nil || tmplErr != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	if err := tmpl.Execute(w, NewBlogs); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+
+func GoToCreateBlog(w http.ResponseWriter, r *http.Request) {
+	layoutPath, layoutErr := utils.GetTemplateFilePath("layout.html")
+	tmplPath, tmplErr := utils.GetTemplateFilePath("create.html")
+
+	if layoutErr != nil || tmplErr != nil {
+		http.Error(w, "Error loading templates", http.StatusInternalServerError)
+		return
+	}
+
+	NewBlogs := models.GetAllBlogs()
+	tmpl, err := template.ParseFiles(layoutPath, tmplPath)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -50,6 +74,23 @@ func GetBlog(w http.ResponseWriter, r *http.Request) {
 	}
 
 	blogDetails, _ := models.GetBlogsById(ID)
+	if blogDetails == nil {
+		http.Error(w, "Blog not found", http.StatusNotFound)
+		return
+	}
+
+	// Split the content into lines
+	formattedContent := strings.Split(blogDetails.Content, "\n")
+
+	// Prepare data to pass to the template
+	data := struct {
+		*models.Blog
+		FormattedContent []string
+	}{
+		Blog:             blogDetails,
+		FormattedContent: formattedContent,
+	}
+
 	tmpl, err := template.ParseFiles(layoutPath, tmplPath)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -57,29 +98,7 @@ func GetBlog(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	if err := tmpl.Execute(w, blogDetails); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
-func GoToCreateBlog(w http.ResponseWriter, r *http.Request) {
-	layoutPath, layoutErr := utils.GetTemplateFilePath("layout.html")
-	tmplPath, tmplErr := utils.GetTemplateFilePath("create.html")
-
-	if layoutErr != nil || tmplErr != nil {
-		http.Error(w, "Error loading templates", http.StatusInternalServerError)
-		return
-	}
-
-	NewBlogs := models.GetAllBlogs()
-	tmpl, err := template.ParseFiles(layoutPath, tmplPath)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	if err := tmpl.Execute(w, NewBlogs); err != nil {
+	if err := tmpl.Execute(w, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }

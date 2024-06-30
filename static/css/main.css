@@ -6,6 +6,7 @@
 @import "../css/buttons.css";
 @import "../css/create.css";
 @import "../css/showBlog.css";
+@import "../css/modal.css";
 
 body {
   font-family: "Playwrite IT Moderna", sans-serif;

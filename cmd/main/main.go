@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-
 	"github.com/florin12er/GoBlogApp/pkg/routes"
 	"github.com/gorilla/mux"
 )
@@ -26,7 +25,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "5000"
+		port = "4200"
 	}
 
 	addr := "0.0.0.0:" + port

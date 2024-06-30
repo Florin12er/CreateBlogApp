@@ -15,6 +15,21 @@ function deleteBlog(blogId) {
             console.error("Error deleting blog:", error);
         });
 }
+function GoToDialog(event) {
+    const closeButton = document.getElementById("close-modal");
+    event.preventDefault();
+    const modal = document.getElementById("modal");
+    modal.showModal();
+    window.addEventListener("click", function(e) {
+        if (e.target === modal) {
+            modal.close();
+        }
+    });
+    closeButton.addEventListener("click", () => {
+        modal.close();
+    });
+}
+
 function updateBlog(blogId) {
     const name = document.getElementById("name").value;
     const author = document.getElementById("author").value;

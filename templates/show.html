@@ -1,4 +1,13 @@
 {{ define "content" }}
+<dialog id="modal">
+    <h1>Are you sure You want to delete this!!!</h1>
+    <div class="blog-buttons">
+        <button class="close-button" id="close-modal">No!!</button>
+        <button type="button" class="delete-button" onclick="deleteBlog('{{.ID}}')">
+            Yes!!
+        </button>
+    </div>
+</dialog>
 <h1 class="show-title">{{ .Name }}</h1>
 <div class="blog-container">
     <div class="blog-details">
@@ -6,12 +15,16 @@
             <p class="blog-author"><b>Author:</b> {{ .Author }}</p>
             <p class="blog-tags"><b>Tags:</b> {{ .Tags }}</p>
             <p class="blog-content-title"><b>Content:</b></p>
-            <p class="blog-content">{{ .Content }}</p>
+            <div class="blog-content">
+                {{ range .FormattedContent }}
+                <p>{{ . }}</p>
+                {{ end }}
+            </div>
         </div>
         <div class="blog-buttons">
-            <form id="deleteForm{{.ID}}" class="delete-form">
+            <form id="deleteForm{{.ID}}" style="display: inline" onsubmit="return false;">
                 <input type="hidden" name="_method" value="DELETE" />
-                <button type="button" class="delete-button" onclick="deleteBlog('{{.ID}}')">
+                <button type="button" class="delete-button" id="open-delete-modal" onclick="GoToDialog(event)">
                     Delete
                 </button>
             </form>
@@ -19,4 +32,5 @@
         </div>
     </div>
 </div>
+
 {{ end }}

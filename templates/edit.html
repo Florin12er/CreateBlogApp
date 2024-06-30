@@ -1,43 +1,27 @@
 {{ define "content" }}
 <h1 class="form-title">Edit Blog: {{ .Name }}</h1>
-<div class="blog-edit">
+<div class="blog-new">
     <form id="updateForm{{.ID}}" style="display: inline" class="blog-form">
         <label for="name" class="form-label">Name:</label>
-        <input
-            type="text"
-            id="name"
-            name="name"
-            value="{{ .Name }}"
-            class="form-input"
-            required
-        /><br />
+        <input type="text" id="name" name="name" value="{{ .Name }}" class="form-input" required /><br />
 
         <label for="author" class="form-label">Author:</label>
-        <input
-            type="text"
-            id="author"
-            name="author"
-            value="{{ .Author }}"
-            class="form-input"
-            required
-        /><br />
+        <input type="text" id="author" name="author" value="{{ .Author }}" class="form-input" required /><br />
 
         <label for="tags" class="form-label">Tags:</label>
-        <input
-            type="text"
-            id="tags"
-            name="tags"
-            value="{{ .Tags }}"
-            class="form-input"
-            required
-        /><br />
+        <input type="text" id="tags" name="tags" value="{{ .Tags }}" class="form-input" required /><br />
 
         <label for="content" class="form-label">Content:</label>
-        <textarea name="content" id="content" class="form-textarea" required>{{ .Content }}</textarea><br />
+        <textarea name="content" id="content" class="form-textarea" required>
+            {{ .Content }}</textarea><br />
 
-        <input type="hidden" name="_method" value="PUT" />
-        <button type="button" onclick="updateBlog('{{.ID}}')" class="submit-button">Update</button>
+        <div class="edit-buttons">
+            <input type="hidden" name="_method" value="PUT" />
+            <button type="button" onclick="updateBlog('{{.ID}}')" class="submit-button">
+                Update
+            </button>
+            <a class="cancel-button" href="/blog/{{.ID}}">Cancel</a>
+        </div>
     </form>
 </div>
 {{ end }}
-
